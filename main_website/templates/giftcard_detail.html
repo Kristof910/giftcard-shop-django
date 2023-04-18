@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ giftcard.type.name }} Giftcard {{ giftcard.value }} {{ giftcard.region }}</h1>
+<h1>{{ giftcard.type }} {{ giftcard.region }} Giftcard {{ giftcard.value }}{{ giftcard.region.currency}}</h1>
 <img src="{{ giftcard.image.url }}" height="300"></img>
 <p>Price: ${{ giftcard.price }}</p>
 <p>Region: {{ giftcard.region }}</p>
-<p>Value: {{ giftcard.value }}</p>
+<p>Value: {{ giftcard.value }}{{ giftcard.region.currency }}</p>
 <p>Stock: {{ giftcard.available_stock }}</p>
 {% if giftcard.is_digital %}
 <p>Delivery: Digital</p>
