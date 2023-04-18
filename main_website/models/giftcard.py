@@ -9,6 +9,7 @@ class Giftcard(models.Model):
     value = models.ForeignKey(GiftcardValue, on_delete=models.SET_NULL, null=True)
     region = models.ForeignKey(GiftcardRegion, on_delete=models.SET_NULL, null=True)
     is_digital = models.BooleanField(default=True)
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
 
     price = models.DecimalField(max_digits=10, decimal_places=2)
     available_stock = models.PositiveIntegerField()

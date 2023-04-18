@@ -2,7 +2,8 @@
 
 {% block content %}
 <h1>{{ giftcard.type.name }} Giftcard {{ giftcard.value }} {{ giftcard.region }}</h1>
-<p>Price: {{ giftcard.price }}</p>
+<img src="{{ giftcard.image.url }}" height="300"></img>
+<p>Price: ${{ giftcard.price }}</p>
 <p>Region: {{ giftcard.region }}</p>
 <p>Value: {{ giftcard.value }}</p>
 <p>Stock: {{ giftcard.available_stock }}</p>
