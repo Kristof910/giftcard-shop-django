@@ -14,4 +14,4 @@ class Giftcard(models.Model):
     available_stock = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.type} {self.region} {self.value}"
+        return f"{self.type} Giftcard {self.value} {self.region}"

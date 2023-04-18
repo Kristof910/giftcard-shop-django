@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ giftcard.type.name }} Giftcard {{ giftcard.value }} {{ giftcard.region }}</h1>
+<p>Price: {{ giftcard.price }}</p>
+<p>Region: {{ giftcard.region }}</p>
+<p>Value: {{ giftcard.value }}</p>
+<p>Stock: {{ giftcard.available_stock }}</p>
+{% if giftcard.is_digital %}
+<p>Delivery: Digital</p>
+{% else %}
+<p>Delivery: Shipping</p>
+{% endif %}
+<a href="">BUY NOW</a>
+<a href="">ADD TO CART</a>
+<p>Description: {{ giftcard.type.description }}</p>
+{% endblock %}
