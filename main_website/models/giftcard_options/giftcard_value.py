@@ -1,6 +1,9 @@
 from django.db import models
+from .giftcard_region import GiftcardRegion
 
 
 class GiftcardValue(models.Model):
-    name = models.CharField(max_length=10, blank=False, null=False)
     value = models.PositiveIntegerField()
+
+    def __str__(self):
+        return str(self.value)
