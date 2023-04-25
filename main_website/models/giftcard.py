@@ -2,6 +2,7 @@ from django.db import models
 from main_website.models.giftcard_options.giftcard_region import GiftcardRegion
 from main_website.models.giftcard_options.giftcard_type import GiftcardType
 from main_website.models.giftcard_options.giftcard_value import GiftcardValue
+from django.urls import reverse
 
 
 class Giftcard(models.Model):
@@ -16,3 +17,6 @@ class Giftcard(models.Model):
 
     def __str__(self):
         return f"{self.type} Giftcard {self.value} {self.region}"
+
+    def get_absolute_url(self):
+        return reverse("giftcard-detail", args=[str(self.id)])
