@@ -4,7 +4,9 @@
 <h3>Shopping Cart</h3>
 {% if cart_items %}
 {% for key, value in cart_items.items %}
-<p>{{ key }}: {{ value }}x</p>
+<p>{{ key }}: {{ value }}x (<a href="{% url 'delete-from-cart' pk=key.id %}">DELETE ITEM</a>)</p>
 {% endfor %}
+{% else %}
+<p>Your shopping cart is empty!</p>
 {% endif %}
 {% endblock %}

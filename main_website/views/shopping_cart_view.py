@@ -8,6 +8,7 @@ def shopping_cart_view(request):
         id_list = request.session.get("shopping_cart")
         filtered_objects = Giftcard.objects.filter(id__in=id_list)
 
+        # making a dictionary with products + amount of ordered
         cart_items = {}
         for obj in filtered_objects:
             counter = 0
@@ -18,6 +19,6 @@ def shopping_cart_view(request):
 
         context = {"cart_items": cart_items}
     else:
-        context = {"cart_items": {"Note: ": "Your shopping cart is empty!"}}
+        context = {}
 
     return render(request, "shopping_cart.html", context)

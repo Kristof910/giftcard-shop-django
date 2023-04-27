@@ -4,6 +4,7 @@ from .views import giftcard_detail_view
 from .views import contact_view
 from .views import shopping_cart_view
 from .views import save_to_cart
+from .views import delete_item_from_cart
 
 
 urlpatterns = [
@@ -12,4 +13,9 @@ urlpatterns = [
     path("contact/", contact_view.contact_view, name="contact"),
     path("cart/", shopping_cart_view, name="shopping-cart"),
     path("add-to-cart/<int:pk>", save_to_cart, name="save-to-cart"),
+    path(
+        "delete-from-cart/<int:pk>",
+        delete_item_from_cart.delete_item_from_cart,
+        name="delete-from-cart",
+    ),
 ]
