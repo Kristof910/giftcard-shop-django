@@ -25,6 +25,6 @@
 </b>
 {% endif %}
 <a href="">BUY NOW</a>
-<a href="">ADD TO CART</a>
+<a href="{% url 'save-to-cart' pk=pk %}">ADD TO CART</a>
 <p>Description: {{ giftcard.type.description }}</p>
 {% endblock %}
