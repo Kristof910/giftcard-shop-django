@@ -3,8 +3,8 @@
 {% block content %}
 <h3>Shopping Cart</h3>
 {% if cart_items %}
-{% for item in cart_items %}
-<p>{{ item }}</p>
+{% for key, value in cart_items.items %}
+<p>{{ key }}: {{ value }}x</p>
 {% endfor %}
 {% endif %}
 {% endblock %}
