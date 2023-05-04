@@ -7,22 +7,24 @@ from django.shortcuts import render
 
 # using method based view to pass more then 1 model
 def all_cards_view(request):
-    if request.method == "POST":
-        print("HELLO")
-        selected_regions = request.POST.getlist("region[]")
-        print("REGION: ", selected_regions)
-        selected_types = request.POST.getlist("type[]")
-        selected_values = request.POST.getlist("values[]")
-        selected_delivery_methods = request.POST.getlist("delivery[]")
+    giftcards = Giftcard.objects.all()
 
-        giftcards = Giftcard.objects.filter(
-            region__name__in=selected_regions,
-            type__name__in=selected_types,
-            value__value__in=selected_values,
-            is_digital__in=selected_delivery_methods,
-        )
-    else:
-        giftcards = Giftcard.objects.all()
+    # filtering out objects based on form post
+    if request.method == "POST":
+        if request.POST.getlist("region[]"):
+            giftcards = giftcards.filter(
+                region__name__in=request.POST.getlist("region[]")
+            )
+        if request.POST.getlist("type[]"):
+            giftcards = giftcards.filter(type__name__in=request.POST.getlist("type[]"))
+        if request.POST.getlist("values[]"):
+            giftcards = giftcards.filter(
+                value__value__in=request.POST.getlist("values[]")
+            )
+        if request.POST.getlist("delivery[]"):
+            giftcards = giftcards.filter(
+                is_digital__in=request.POST.getlist("delivery[]")
+            )
 
     regions = GiftcardRegion.objects.all()
     types = GiftcardType.objects.all()
