@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Region</legend>
+                {% if regions %}
+                {% for region in regions %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="{{ region.name }}" name="region[]"
+                        value="{{ region.name }}">
+                    <label class="form-check-label" for="{{ region.name }}">{{ region.name }}</label>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </fieldset>
+
+            <fieldset>
+                <legend>Type</legend>
+                {% if types %}
+                {% for type in types %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="{{ type.name }}" name="type[]"
+                        value="{{ type.name }}">
+                    <label class="form-check-label" for="{{ type.name }}">{{ type.name }}</label>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </fieldset>
+
+            <fieldset>
+                <legend>Value</legend>
+                {% if values %}
+                {% for value in values %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="{{ value.value }}" name="values[]"
+                        value="{{ value.value }}">
+                    <label class="form-check-label" for="{{ value.value }}">{{ value.value }}</label>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </fieldset>
+
+            <fieldset>
+                <legend>Delivery</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="digital" name="delivery[]" value="digital">
+                    <label class="form-check-label" for="digital">Digital</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="shipping" name="delivery[]" value="shipping">
+                    <label class="form-check-label" for="shipping">Shipping</label>
+                </div>
+            </fieldset>
+
+            <input class="btn btn-primary" type="submit" value="Filter">
+        </form>
+    </div>
+
+    <div class="col-md-9">
+        {% if giftcards %}
+        {% for card in giftcards %}
+        <div style="display: inline-block; margin-right: 20px;">
+            <a href="{{ card.get_absolute_url }}">
+                <h5>{{ card.type }} {{ card.region }} Giftcard {{ card.value }}{{ card.region.currency }}</h5>
+                <img src="{{ card.image.url }}" height="150"></img>
+                <p>Price: ${{ card.price }}</p>
+            </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
