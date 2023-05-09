@@ -15,8 +15,11 @@ def shopping_cart_view(request):
             for i in id_list:
                 if i == obj.id:
                     counter += 1
-            cart_items[obj] = counter
+            cart_items[obj] = {"amount": counter, "total_price": 0}
 
+        # calculating the total price
+        for key, value in cart_items.items():
+            value["total_price"] = key.price * value["amount"]
         context = {"cart_items": cart_items}
     else:
         context = {}
