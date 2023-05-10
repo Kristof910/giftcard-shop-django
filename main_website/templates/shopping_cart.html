@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Shopping Cart</h3>
+{% if cart_items %}
+{% for key, value in cart_items.items %}
+<p>{{ key }} {% if key.is_digital %} <b>DIGITAL DELIVERY</b> {% else %} <b>PHYSICAL DELIVERY</b> {% endif %} <img
+        src="{{ key.image.url }}" height="100"></img> {{ value }}x (<a
+        href="{% url 'delete-from-cart' pk=key.id %}">DELETE ITEM</a>)</p>
+
+{% endfor %}
+<br>
+<a href="">
+    <h4>Proceed to purchase</h5>
+</a>
+{% else %}
+<p>Your shopping cart is empty!</p>
+{% endif %}
+{% endblock %}
