@@ -4,14 +4,20 @@
 <h3>Shopping Cart</h3>
 {% if cart_items %}
 {% for key, value in cart_items.items %}
-<p>{{ key }} {% if key.is_digital %} <b>DIGITAL DELIVERY</b> {% else %} <b>PHYSICAL DELIVERY</b> {% endif %}
-    <img src="{{ key.image.url }}" height="100"></img>
-    {{ value.amount }}x (<a href="{% url 'delete-from-cart' pk=key.id %}">DELETE ITEM</a>) <font size="5">
-        {{ value.total_price }}
-        {{ key.region.currency }}</font>
-</p>
-
+<a href="{{ key.get_absolute_url }}">
+    <p>{{ key }} {% if key.is_digital %} <b>DIGITAL DELIVERY</b> {% else %} <b>PHYSICAL DELIVERY</b> {% endif %}
+        <img src="{{ key.image.url }}" height="100"></img>
+        {{ value.amount }}x (<a href="{% url 'delete-from-cart' pk=key.id %}">DELETE ITEM</a>) <font size="5">
+            ${{ value.total_price }}</font>
+    </p>
+</a>
 {% endfor %}
+
+{% if shipping != 0 %}
+<h4>Shipping cost: ${{ shipping }}</h4>
+{% endif %}
+<h4>Total price: ${{ final_price }}</h4>
+
 <br>
 <a href="">
     <h4>Proceed to purchase</h5>
