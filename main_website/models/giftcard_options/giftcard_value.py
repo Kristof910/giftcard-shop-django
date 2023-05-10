@@ -7,3 +7,6 @@ class GiftcardValue(models.Model):
 
     def __str__(self):
         return str(self.value)
+
+    class Meta:
+        ordering = ["value"]

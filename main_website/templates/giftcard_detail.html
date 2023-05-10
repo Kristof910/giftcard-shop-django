@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ giftcard.type }} {{ giftcard.region }} Giftcard {{ giftcard.value }}{{ giftcard.region.currency}}</h1>
+<h1>{{ giftcard }}</h1>
 <img src="{{ giftcard.image.url }}" height="300"></img>
 <b>
     <p>Price: ${{ giftcard.price }}</p>

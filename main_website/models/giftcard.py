@@ -16,7 +16,7 @@ class Giftcard(models.Model):
     available_stock = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.type} Giftcard {self.value} {self.region}"
+        return f"{self.type} {self.region} Giftcard {self.value}{self.region.currency}"
 
     def get_absolute_url(self):
         return reverse("giftcard-detail", args=[str(self.id)])
