@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>Welcome!</p>
+<h3>Recommended cards:</h3>
+{% if object_list %}
+{% for card in object_list %}
+<div style="display: inline-block; margin-right: 20px;">
+    <a href="{{ card.get_absolute_url }}">
+        <h5>{{ card.type }} {{ card.region }} Giftcard {{ card.value }}{{ card.region.currency }}</h5>
+        <img src="{{ card.image.url }}" height="150"></img>
+        <p>Price: ${{ card.price }}</p>
+    </a>
+</div>
+{% endfor %}
+{% endif %}
 {% endblock %}
