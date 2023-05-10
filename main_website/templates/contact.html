@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Contact us</h3>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        Name: {{ form.name }}
+    </div>
+    <div>
+        Email: {{ form.email }}
+    </div>
+    <div>
+        Message: {{ form.message }}
+    </div>
+    <button type="submit">Send</button>
+</form>
+{% endblock %}
