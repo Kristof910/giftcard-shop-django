@@ -6,6 +6,7 @@ from .views import shopping_cart_view
 from .views import save_to_cart
 from .views.delete_item_from_cart import delete_item_from_cart
 from .views.all_cards_view import all_cards_view
+from .views.payment_view import payment_view
 
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
         name="delete-from-cart",
     ),
     path("all-cards", all_cards_view, name="all-cards"),
+    path("payment/", payment_view, name="payment"),
 ]

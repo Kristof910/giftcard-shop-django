@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from ..forms.contact_form import ContactForm
-from ..models import ContactMessages
+from ..models.contact_message import ContactMessage
 
 
 # using method based view because there are no models required
@@ -12,7 +12,7 @@ def contact_view(request):
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             message = form.cleaned_data["message"]
-            contact_message = ContactMessages(name=name, email=email, message=message)
+            contact_message = ContactMessage(name=name, email=email, message=message)
             contact_message.save()
         return redirect("index")
     else:
