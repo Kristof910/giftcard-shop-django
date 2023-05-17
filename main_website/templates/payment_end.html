@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Thank you!</h3>
+<br>
+Your codes has been sent to the email address! You can also see them here:
+<br><br>
+{% for code in code_list %}
+{{ code.giftcard }}: <b>{{ code.code }}</b>
+<br>
+{% endfor %}
+{% endblock %}

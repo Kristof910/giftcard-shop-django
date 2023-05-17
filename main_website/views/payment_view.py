@@ -9,8 +9,6 @@ def payment_view(request):
     if request.method == "POST":
         form = DigitalOrderForm(request.POST)
         if form.is_valid():
-            # payment_method = form.cleaned_data["payment_method"]
-            # placeholder
             payment_method = form.cleaned_data["payment_method"]
             email = form.cleaned_data["email"]
             digital_order = DigitalOrder(payment_method=payment_method, email=email)
@@ -19,8 +17,7 @@ def payment_view(request):
             for giftcard_id in request.session.get("shopping_cart"):
                 giftcard_instance = Giftcard.objects.get(pk=giftcard_id)
                 digital_order.item_list.add(giftcard_instance)
-        # change it to final page
-        return redirect("index")
+        return redirect("payment-end")
     else:
         form = DigitalOrderForm()
     # checks to show or not the shipping details
