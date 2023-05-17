@@ -3,7 +3,7 @@ from ..models.giftcard import Giftcard
 from ..models.shipping_cost import ShippingCost
 
 
-# using method based view because there are no models required
+# using method based view because there are multiple models required
 def shopping_cart_view(request):
     if "shopping_cart" in request.session and request.session.get("shopping_cart"):
         id_list = request.session.get("shopping_cart")

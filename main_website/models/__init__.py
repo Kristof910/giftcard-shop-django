@@ -1,2 +1,2 @@
 from .giftcard import Giftcard
-from .contact_messages import ContactMessages
+from .contact_message import ContactMessage

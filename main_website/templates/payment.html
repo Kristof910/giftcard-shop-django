@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Payment</h3>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        {{ form.payment_method }}
+        {{ form.payment_method.errors }}
+    </div>
+    <div>
+        Email: {{ form.email }}
+        {{ form.email.errors }}
+        <br>(please note that without an account this is the only way to save your codes)
+    </div>
+    <button type="submit">Confirm purchase</button>
+</form>
+{% if show_shipping_details %}
+<br>+ Shipping
+{% endif %}
+{% endblock %}
