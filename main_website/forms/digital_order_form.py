@@ -8,4 +8,13 @@ class DigitalOrderForm(ModelForm):
 
     class Meta:
         model = DigitalOrder
-        fields = ("email",)
+        fields = ("payment_method", "email")
+        widgets = {
+            "payment_method": forms.RadioSelect(
+                choices=[
+                    ("paypal", "PayPal"),
+                    ("creditcard", "Credit Card"),
+                    ("banktransfer", "Bank Transfer"),
+                ]
+            )
+        }

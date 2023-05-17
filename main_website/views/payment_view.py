@@ -11,9 +11,9 @@ def payment_view(request):
         if form.is_valid():
             # payment_method = form.cleaned_data["payment_method"]
             # placeholder
-            transaction_id = "0"
+            payment_method = form.cleaned_data["payment_method"]
             email = form.cleaned_data["email"]
-            digital_order = DigitalOrder(transaction_id=transaction_id, email=email)
+            digital_order = DigitalOrder(payment_method=payment_method, email=email)
             digital_order.save()
             # search from session all the ids of giftcard instances
             for giftcard_id in request.session.get("shopping_cart"):
