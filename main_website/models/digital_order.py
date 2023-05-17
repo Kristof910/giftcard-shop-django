@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from .giftcard import Giftcard
+from django.utils import timezone
 
 
 class DigitalOrder(models.Model):
@@ -10,5 +11,7 @@ class DigitalOrder(models.Model):
     email = models.EmailField()
     item_list = models.ManyToManyField(Giftcard)
 
+    created_at = models.DateTimeField(default=timezone.now)
+
     def __str__(self):
-        return f"NO NAMING YET"
+        return f"{self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"

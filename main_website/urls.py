@@ -8,6 +8,7 @@ from .views.delete_item_from_cart import delete_item_from_cart
 from .views.all_cards_view import all_cards_view
 from .views.payment_view import payment_view
 from .views.payment_end_view import payment_end_view
+from .views.buy_now import buy_now
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
@@ -23,4 +24,5 @@ urlpatterns = [
     path("all-cards/", all_cards_view, name="all-cards"),
     path("payment/", payment_view, name="payment"),
     path("payment/end/", payment_end_view, name="payment-end"),
+    path("buy-now/<int:pk>", buy_now, name="buy-now"),
 ]
