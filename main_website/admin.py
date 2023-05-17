@@ -6,6 +6,7 @@ from .models.giftcard_options.giftcard_value import GiftcardValue
 from .models.contact_message import ContactMessage
 from .models.shipping_cost import ShippingCost
 from .models.giftcard_code import GiftcardCode
+from .models.digital_order import DigitalOrder
 
 admin.site.register(Giftcard)
 admin.site.register(GiftcardRegion)
@@ -14,3 +15,4 @@ admin.site.register(GiftcardValue)
 admin.site.register(ContactMessage)
 admin.site.register(ShippingCost)
 admin.site.register(GiftcardCode)
+admin.site.register(DigitalOrder)

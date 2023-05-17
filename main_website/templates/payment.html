@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-Payment
+<h3>Payment</h3>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        Email: {{ form.email }}
+    </div>
+    <button type="submit">Confirm purchase</button>
+</form>
 {% if show_shipping_details %}
 <br>+ Shipping
 {% endif %}
