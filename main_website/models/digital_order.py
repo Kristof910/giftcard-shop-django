@@ -6,7 +6,6 @@ from django.utils import timezone
 
 class DigitalOrder(models.Model):
     order_number = models.UUIDField(default=uuid.uuid4)
-    # for payment
     payment_method = models.CharField(max_length=50)
     email = models.EmailField()
     item_list = models.ManyToManyField(Giftcard)
