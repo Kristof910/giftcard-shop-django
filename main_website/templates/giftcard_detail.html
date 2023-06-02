@@ -24,7 +24,7 @@
     <p>Delivery: Shipping</p>
 </b>
 {% endif %}
-<a href="">BUY NOW</a>
+<a href="{% url 'buy-now' pk=pk %}">BUY NOW</a>
 <a href="{% url 'save-to-cart' pk=pk %}">ADD TO CART</a>
 <p>Description: {{ giftcard.type.description }}</p>
 {% endblock %}
