@@ -55,24 +55,29 @@
                     <label class="form-check-label" for="shipping">Shipping</label>
                 </div>
             </fieldset>
-
+            <br>
             <input class="btn btn-primary" type="submit" value="Filter">
         </form>
     </div>
 
     <div class="col-md-9">
         {% if giftcards %}
-        {% for card in giftcards %}
-        <div style="display: inline-block; margin-right: 20px;">
-            <a href="{{ card.get_absolute_url }}">
-                <h5>{{ card }}</h5>
-                <img src="{{ card.image.url }}" height="150"></img>
-                <p>Price: ${{ card.price }}</p>
-            </a>
+        <div class="card-columns">
+            {% for card in giftcards %}
+            <div class="card">
+                <a href="{{ card.get_absolute_url }}">
+                    <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card }}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ card }}</h5>
+                    <p class="card-text">Price: ${{ card.price }}</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
         {% endif %}
     </div>
 </div>
-{% include "pagination.html" with page=giftcards%}
+
+{% include "pagination.html" with page=giftcards %}
 {% endblock %}

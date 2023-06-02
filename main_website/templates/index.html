@@ -1,16 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Recommended cards:</h3>
-{% if object_list %}
-{% for card in object_list %}
-<div style="display: inline-block; margin-right: 20px;">
-    <a href="{{ card.get_absolute_url }}">
-        <h5>{{ card }}</h5>
-        <img src="{{ card.image.url }}" height="150"></img>
-        <p>Price: ${{ card.price }}</p>
-    </a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <h3>Recommended Cards</h3>
+            <br>
+            {% if object_list %}
+            <div class="card-deck">
+                {% for card in object_list %}
+                <div class="card">
+                    <a href="{{ card.get_absolute_url }}">
+                        <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card }}</h5>
+                        <p class="card-text">Price: ${{ card.price }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
-{% endfor %}
-{% endif %}
 {% endblock %}
