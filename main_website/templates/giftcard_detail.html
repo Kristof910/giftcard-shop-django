@@ -13,7 +13,7 @@
     <p>Value: {{ giftcard.value }}{{ giftcard.region.currency }}</p>
 </b>
 <b>
-    <p>Stock: {{ giftcard.available_stock }}</p>
+    <p>Stock: {{ total_stock }}</p>
 </b>
 {% if giftcard.is_digital %}
 <b>
@@ -24,7 +24,13 @@
     <p>Delivery: Shipping</p>
 </b>
 {% endif %}
+{% if total_stock == 0 %}
+OUT OF STOCK
+{% elif cart_stock == total_stock %}
+THE MAXIMUM NUMBER OF GIFTCARS HAS BEEN ADDED TO THE CART
+{% elif total_stock != 0 %}
 <a href="{% url 'buy-now' pk=pk %}">BUY NOW</a>
 <a href="{% url 'save-to-cart' pk=pk %}">ADD TO CART</a>
+{% endif %}
 <p>Description: {{ giftcard.type.description }}</p>
 {% endblock %}

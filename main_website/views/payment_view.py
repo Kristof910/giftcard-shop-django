@@ -23,6 +23,7 @@ def payment_view(request):
             if form.is_valid():
                 payment_method = form.cleaned_data["payment_method"]
                 email = form.cleaned_data["email"]
+                request.session["order_email"] = email
                 name = form.cleaned_data["name"]
                 phone = form.cleaned_data["phone"]
                 country = form.cleaned_data["country"]
@@ -53,6 +54,7 @@ def payment_view(request):
             if form.is_valid():
                 payment_method = form.cleaned_data["payment_method"]
                 email = form.cleaned_data["email"]
+                request.session["order_email"] = email
                 digital_order = DigitalOrder(payment_method=payment_method, email=email)
                 digital_order.save()
                 # search from session all the ids of giftcard instances
