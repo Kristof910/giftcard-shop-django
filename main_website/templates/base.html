@@ -5,23 +5,52 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    <!--<script type="text/javascript" src="static/js/main.js"></script>-->
     <title>GiftCard Webshop</title>
 </head>
 
 <body>
-    <div class="container my-5">
-        <h1 class="text-center mb-5">GiftCard Webshop</h1>
-        <div class="text-center">
-            <a href="{% url 'index' %}">HOME</a> | <a href="{% url 'all-cards' %}">ALL CARDS</a> | <a
-                href="{% url 'shopping-cart' %}">MY CART</a> | <a href="{% url 'contact' %}">CONTACT
-                US</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">GiftCard Webshop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all-cards' %}">ALL CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'shopping-cart' %}">MY CART</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">CONTACT US</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <br>
+    </nav>
+
+    <div class="container my-5">
+
         <div class="text-center">
             {% block content %}{% endblock %}
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+7V2mM2O5Zw3qJzo0kXH7KVIJO+Lq6p/uo8eR0pN7fjrL4p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

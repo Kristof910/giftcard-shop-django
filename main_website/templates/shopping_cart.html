@@ -1,28 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Shopping Cart</h3>
-{% if cart_items %}
-{% for key, value in cart_items.items %}
-<a href="{{ key.get_absolute_url }}">
-    <p>{{ key }} {% if key.is_digital %} <b>DIGITAL DELIVERY</b> {% else %} <b>PHYSICAL DELIVERY</b> {% endif %}
-        <img src="{{ key.image.url }}" height="100"></img>
-        {{ value.amount }}x (<a href="{% url 'delete-from-cart' pk=key.id %}">DELETE ITEM</a>) <font size="5">
-            ${{ value.total_price }}</font>
-    </p>
-</a>
-{% endfor %}
-
-{% if shipping != 0 %}
-<h4>Shipping cost: ${{ shipping }}</h4>
-{% endif %}
-<h4>Total price: ${{ final_price }}</h4>
-
-<br>
-<a href="{% url 'payment' %}">
-    <h4>Proceed to purchase</h5>
-</a>
-{% else %}
-<p>Your shopping cart is empty!</p>
-{% endif %}
+<div class="container">
+    <h3 class="title">Shopping Cart</h3>
+    <br>
+    {% if cart_items %}
+    <div class="cart-items">
+        {% for key, value in cart_items.items %}
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    <a href="{{ key.get_absolute_url }}">
+                        <img src="{{ key.image.url }}" alt="{{ key }}" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ key }}</h5>
+                        <p class="card-text">
+                            {% if key.is_digital %}
+                            <span class="delivery-label digital">DIGITAL DELIVERY</span>
+                            {% else %}
+                            <span class="delivery-label physical">PHYSICAL DELIVERY</span>
+                            {% endif %}
+                        </p>
+                        <div class="item-actions">
+                            <p class="item-quantity"><b>Amount:</b> {{ value.amount }}</p>
+                            <a href="{% url 'delete-from-cart' pk=key.id %}" class="btn btn-sm btn-danger">DELETE
+                                ITEM</a>
+                            <p class="item-price" style="font-size: 20px;">${{ value.total_price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% if shipping != 0 %}
+        <div class="shipping">
+            <h4>Shipping cost: ${{ shipping }}</h4>
+        </div>
+        {% endif %}
+        <div class="total-price">
+            <h4>Total price: ${{ final_price }}</h4>
+        </div>
+        <div class="proceed-button">
+            <a href="{% url 'payment' %}" class="btn btn-primary">Proceed to purchase</a>
+        </div>
+    </div>
+    {% else %}
+    <p class="empty-cart">Your shopping cart is empty!</p>
+    {% endif %}
+</div>
 {% endblock %}

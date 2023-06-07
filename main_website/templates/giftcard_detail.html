@@ -1,36 +1,65 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ giftcard }}</h1>
-<img src="{{ giftcard.image.url }}" height="300"></img>
-<b>
-    <p>Price: ${{ giftcard.price }}</p>
-</b>
-<b>
-    <p>Region: {{ giftcard.region }}</p>
-</b>
-<b>
-    <p>Value: {{ giftcard.value }}{{ giftcard.region.currency }}</p>
-</b>
-<b>
-    <p>Stock: {{ total_stock }}</p>
-</b>
-{% if giftcard.is_digital %}
-<b>
-    <p>Delivery: Digital</p>
-</b>
-{% else %}
-<b>
-    <p>Delivery: Shipping</p>
-</b>
-{% endif %}
-{% if total_stock == 0 %}
-OUT OF STOCK
-{% elif cart_stock == total_stock %}
-THE MAXIMUM NUMBER OF GIFTCARS HAS BEEN ADDED TO THE CART
-{% elif total_stock != 0 %}
-<a href="{% url 'buy-now' pk=pk %}">BUY NOW</a>
-<a href="{% url 'save-to-cart' pk=pk %}">ADD TO CART</a>
-{% endif %}
-<p>Description: {{ giftcard.type.description }}</p>
+<div class="container">
+    <h1>{{ giftcard }}</h1>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ giftcard.image.url }}" class="img-fluid" alt="Gift Card Image">
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Price:</h5>
+                    <p class="card-text" style="font-size: 20px;">$ {{ giftcard.price }}</p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Region:</h5>
+                    <p class="card-text" style="font-size: 20px;">{{ giftcard.region }}</p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Value:</h5>
+                    <p class="card-text" style="font-size: 20px;">{{ giftcard.value }}{{ giftcard.region.currency }}</p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Stock:</h5>
+                    <p class="card-text" style="font-size: 20px;">{{ total_stock }}</p>
+                </div>
+                {% if giftcard.is_digital %}
+                <div class="card-body">
+                    <h5 class="card-title">Delivery:</h5>
+                    <p class="card-text" style="font-size: 20px;">Digital</p>
+                </div>
+                {% else %}
+                <div class="card-body">
+                    <h5 class="card-title">Delivery:</h5>
+                    <p class="card-text" style="font-size: 20px;">Shipping</p>
+                </div>
+                {% endif %}
+                {% if total_stock == 0 %}
+                <div class="card-body">
+                    <p class="text-danger">OUT OF STOCK</p>
+                </div>
+                {% elif cart_stock == total_stock %}
+                <div class="card-body">
+                    <p class="text-danger">THE MAXIMUM NUMBER OF GIFTCARDS HAS BEEN ADDED TO THE CART</p>
+                </div>
+                {% elif total_stock != 0 %}
+                <div class="card-body">
+                    <a href="{% url 'buy-now' pk=pk %}" class="btn btn-primary">BUY NOW</a>
+                    <a href="{% url 'save-to-cart' pk=pk %}" class="btn btn-success">ADD TO CART</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <b>Description:</b>
+            <p> {{ giftcard.type.description }}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

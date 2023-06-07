@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Thank you!</h3>
-<br>
-Your codes has been sent to the email address! You can also see them here:
-<br><br>
-{% for code in code_list %}
-{{ code.giftcard }}: <b>{% if code.giftcard.is_digital %}{{ code.code }}{% else %} DELIVERY ACCEPTED {% endif %}</b>
-<br>
-{% endfor %}
+<div style="text-align: center;">
+    <h3 style="font-size: 24px; margin-bottom: 20px;">Thank you!</h3>
+    <p style="font-size: 18px;">Your codes have been sent to your email address! You can also see them here:</p>
+    <br>
+    {% for code in code_list %}
+    <p style="font-size: 16px; margin-bottom: 10px;">
+        {{ code.giftcard }}:
+        <b>{% if code.giftcard.is_digital %}{{ code.code }}{% else %} PHYSICAL DELIVERY {% endif %}</b>
+    </p>
+    {% endfor %}
+</div>
 {% endblock %}
